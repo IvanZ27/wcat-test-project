@@ -22,7 +22,7 @@ public class ConditionController {
         this.conditionService = conditionService;
     }
 
-    @GetMapping("/condition")
+    @GetMapping("ui/condition")
     public ResponseEntity<List<ConditionDto>> getConditions() {
         List<Condition> conditions = conditionService.getConditions();
         List<ConditionDto> conditionDtos = conditions.stream().map(e -> DtoUtils.convertToDto(e, ConditionDto.class))

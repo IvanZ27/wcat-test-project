@@ -22,7 +22,7 @@ public class CriteriaController {
         this.criteriaService = criteriaService;
     }
 
-    @GetMapping("/criteria")
+    @GetMapping("ui/criteria")
     public ResponseEntity<List<CriteriaDto>> getFilters() {
         List<Criteria> filters = criteriaService.getCriteries();
         List<CriteriaDto> criteriaDtos = filters.stream().map(e -> DtoUtils.convertToDto(e, CriteriaDto.class))
