@@ -8,10 +8,7 @@ import main.wisercat.filter.utils.DtoUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,7 +19,7 @@ public class FilterController {
     @Autowired
     private FilterService filterService;
 
-    @GetMapping("/filter")
+    @GetMapping("ui/filter")
     public ResponseEntity<List<FilterDto>> getFilters() {
         List<Filter> filters = filterService.getFilters();
         List<FilterDto> filterDtos = filters.stream().map(e -> DtoUtils.convertToDto(e, FilterDto.class))
@@ -30,7 +27,7 @@ public class FilterController {
         return new ResponseEntity<>(filterDtos, HttpStatus.OK);
     }
 
-    @PostMapping("/filter")
+    @PostMapping("ui/filter")
     public ResponseEntity<FilterDto> saveFilters(@RequestBody FilterDto filterDto) {
         filterDto.setId(null);
         Filter newFilter = filterService.saveFilter(filterDto);
