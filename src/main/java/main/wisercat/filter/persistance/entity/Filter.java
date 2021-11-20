@@ -22,11 +22,13 @@ public class Filter {
     @Column(name = "filter_name")
     private String filterName;
 
-    @Column(name = "criteria_id")
-    private Integer criteriaId;
+    @ManyToOne
+    @JoinColumn(name = "criteria_id", referencedColumnName = "id")
+    private Criteria criteria;
 
-    @Column(name = "condition_id")
-    private Integer conditionId;
+    @ManyToOne
+    @JoinColumn(name = "condition_id", referencedColumnName = "id")
+    private Condition condition;
 
     @Column(name = "amount_value")
     private Integer amountValue;

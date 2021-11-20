@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -23,9 +25,16 @@ public class FilterController {
     @GetMapping("/filter")
     public ResponseEntity<List<FilterDto>> getFilters() {
         List<Filter> filters = filterService.getFilters();
-        List<FilterDto> employeeDtos = filters.stream().map(e -> DtoUtils.convertToDto(e, FilterDto.class))
+        List<FilterDto> filterDtos = filters.stream().map(e -> DtoUtils.convertToDto(e, FilterDto.class))
                 .collect(Collectors.toList());
-        return new ResponseEntity<>(employeeDtos, HttpStatus.OK);
+        return new ResponseEntity<>(filterDtos, HttpStatus.OK);
+    }
 
+    @PostMapping("/filter")
+    public ResponseEntity<FilterDto> saveFilters(@RequestBody FilterDto filterDto) {
+        filterDto.setId(null);
+        Filter newFilter = filterService.saveFilter(filterDto);
+        FilterDto newFilterDto = DtoUtils.convertToDto(newFilter, FilterDto.class);
+        return new ResponseEntity<>(newFilterDto, newFilterDto == null ? HttpStatus.BAD_REQUEST : HttpStatus.OK);
     }
 }
