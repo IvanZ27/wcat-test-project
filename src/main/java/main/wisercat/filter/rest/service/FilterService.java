@@ -1,8 +1,6 @@
 package main.wisercat.filter.rest.service;
 
 
-import main.wisercat.filter.persistance.entity.Condition;
-import main.wisercat.filter.persistance.entity.Criteria;
 import main.wisercat.filter.persistance.entity.Filter;
 import main.wisercat.filter.persistance.repo.ConditionRepository;
 import main.wisercat.filter.persistance.repo.CriteriaRepository;
@@ -35,24 +33,24 @@ public class FilterService {
     public List<FilterDto> saveFilter(List<FilterDto> filterDtos) {
         ArrayList<FilterDto> newFilterDtos = new ArrayList<>();
 
-        FilterDto firstFilterDto = filterDtos.get(0);
-
-        Integer criteriaId = firstFilterDto.getCriteriaId();
-        Integer conditionId = firstFilterDto.getConditionId();
-
-        Criteria criteria = criteriaRepository.findById(criteriaId).orElse(null);
-        Condition condition = conditionRepository.findById(conditionId).orElse(null);
-
         for (FilterDto filterDto : filterDtos) {
-            if (!criteriaId.equals(filterDto.getCriteriaId()) ||
-                    !conditionId.equals(filterDto.getConditionId())) {
+
+            if (filterDto.getCriteriaId() == 1 && filterDto.getTitleValue() != null || filterDto.getCriteriaId() == 1 && filterDto.getDateValue() != null ) {
+                return null;
+            }
+
+            if (filterDto.getCriteriaId() == 2 && filterDto.getAmountValue() != null || filterDto.getCriteriaId() == 2 && filterDto.getDateValue() != null ) {
+                return null;
+            }
+
+            if (filterDto.getCriteriaId() == 3 && filterDto.getTitleValue() != null || filterDto.getCriteriaId() == 3 && filterDto.getAmountValue() != null ) {
                 return null;
             }
 
             Filter filterEntity = new Filter();
             filterEntity.setFilterName(filterDto.getFilterName());
-            filterEntity.setCriteria(criteria);
-            filterEntity.setCondition(condition);
+            filterEntity.setCriteria(criteriaRepository.findById(filterDto.getCriteriaId()).orElse(null));
+            filterEntity.setCondition(conditionRepository.findById(filterDto.getConditionId()).orElse(null));
             filterEntity.setAmountValue(filterDto.getAmountValue());
             filterEntity.setTitleValue(filterDto.getTitleValue());
             filterEntity.setDateValue(filterDto.getDateValue());
