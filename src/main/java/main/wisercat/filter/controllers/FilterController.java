@@ -28,10 +28,10 @@ public class FilterController {
     }
 
     @PostMapping("ui/filter")
-    public ResponseEntity<FilterDto> saveFilters(@RequestBody FilterDto filterDto) {
-        filterDto.setId(null);
-        Filter newFilter = filterService.saveFilter(filterDto);
-        FilterDto newFilterDto = DtoUtils.convertToDto(newFilter, FilterDto.class);
-        return new ResponseEntity<>(newFilterDto, newFilterDto == null ? HttpStatus.BAD_REQUEST : HttpStatus.OK);
+    public ResponseEntity<List<FilterDto>> addEmployeeToProject(
+            @RequestBody List<FilterDto> filterDtos) {
+        List<FilterDto> newFilters = filterService.saveFilter(filterDtos);
+        return new ResponseEntity<>(newFilters, newFilters == null
+                ? HttpStatus.BAD_REQUEST : HttpStatus.OK);
     }
 }
