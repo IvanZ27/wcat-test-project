@@ -16,6 +16,8 @@ public class ConditionService {
         this.conditionRepository = conditionRepository;
     }
 
-    public List<Condition> getConditions() { return conditionRepository.findAll(); }
+    public List<Condition> getConditions() {
+        return conditionRepository.findAll();
+    }
 
 }

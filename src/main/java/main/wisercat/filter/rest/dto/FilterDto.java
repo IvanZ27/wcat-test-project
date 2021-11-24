@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Getter
 @Setter
-public class FilterDto implements DtoEntity {
+public class FilterDto {
 
     private Integer id;
     private String filterName;

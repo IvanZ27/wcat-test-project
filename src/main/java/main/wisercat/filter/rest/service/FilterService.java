@@ -35,15 +35,18 @@ public class FilterService {
 
         for (FilterDto filterDto : filterDtos) {
 
-            if (filterDto.getCriteriaId() == 1 && filterDto.getTitleValue() != null || filterDto.getCriteriaId() == 1 && filterDto.getDateValue() != null ) {
+            if (filterDto.getCriteriaId() == 1 && filterDto.getTitleValue() != null
+                    || filterDto.getCriteriaId() == 1 && filterDto.getDateValue() != null ) {
                 return null;
             }
 
-            if (filterDto.getCriteriaId() == 2 && filterDto.getAmountValue() != null || filterDto.getCriteriaId() == 2 && filterDto.getDateValue() != null ) {
+            if (filterDto.getCriteriaId() == 2 && filterDto.getAmountValue() != null
+                    || filterDto.getCriteriaId() == 2 && filterDto.getDateValue() != null ) {
                 return null;
             }
 
-            if (filterDto.getCriteriaId() == 3 && filterDto.getTitleValue() != null || filterDto.getCriteriaId() == 3 && filterDto.getAmountValue() != null ) {
+            if (filterDto.getCriteriaId() == 3 && filterDto.getTitleValue() != null
+                    || filterDto.getCriteriaId() == 3 && filterDto.getAmountValue() != null ) {
                 return null;
             }
 

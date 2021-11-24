@@ -16,6 +16,8 @@ public class CriteriaService {
         this.criteriaRepository = criteriaRepository;
     }
 
-    public List<Criteria> getCriteries() { return criteriaRepository.findAll(); }
+    public List<Criteria> getCriteries() {
+        return criteriaRepository.findAll();
+    }
 
 }

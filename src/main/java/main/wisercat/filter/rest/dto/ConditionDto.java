@@ -10,7 +10,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class ConditionDto implements DtoEntity{
+public class ConditionDto {
 
     private Integer id;
     private Integer criteriaId;
